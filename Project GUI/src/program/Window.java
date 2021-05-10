@@ -1129,28 +1129,6 @@ public class Window {
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				clothesIdTxt.setText("Clothes ID");
-				ColorTxt.setText("Color");
-				BrandTxt.setText("Brand");
-				MaterialTxt.setText("Material");
-				PriceTxt.setText("Price");
-				GenderTxt.setText("Gender");
-				dressLengthTxt.setText("Dress Length");
-				dressTypeTxt.setText("Dress Type");
-				hatSizeTxt.setText("Hat Size");
-				hatTypeTxt.setToolTipText("Hat Type");
-				pantsLengthTxt.setText("Pants Length");
-				pantsFitTxt.setText("Pants Fit");
-				pantsWaistSizeTxt.setText("Waist Size");
-				pantssTypeTxt.setText("Pants Type");
-				pantsInseamTxt.setText("Pants Inseam");
-				shoesSizeTxt.setText("Shoe Size");
-				shoesTypeTxt.setText("Shoe Type");
-				shoesLacesTxt.setText("Shoe Laces");
-				topSleevesTxt.setText("Top Sleeves");
-				topCollarTxt.setText("Top Collar");
-				topSizeTxt.setText("Top Size");
-				topTypeTxt.setText("Top Type");
 
 				String clothesSql = "INSERT INTO clothesshop.Clothes (clothesid, color, brand, material, price, gender, category) VALUES ('"
 						+ clothesIdTxt.getText() + "', '" + ColorTxt.getText() + "', '" + BrandTxt.getText() + "', '"
@@ -1185,6 +1163,28 @@ public class Window {
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, "Fill out the necessary fields.");
 				}
+				clothesIdTxt.setText("Clothes ID");
+				ColorTxt.setText("Color");
+				BrandTxt.setText("Brand");
+				MaterialTxt.setText("Material");
+				PriceTxt.setText("Price");
+				GenderTxt.setText("Gender");
+				dressLengthTxt.setText("Dress Length");
+				dressTypeTxt.setText("Dress Type");
+				hatSizeTxt.setText("Hat Size");
+				hatTypeTxt.setToolTipText("Hat Type");
+				pantsLengthTxt.setText("Pants Length");
+				pantsFitTxt.setText("Pants Fit");
+				pantsWaistSizeTxt.setText("Waist Size");
+				pantssTypeTxt.setText("Pants Type");
+				pantsInseamTxt.setText("Pants Inseam");
+				shoesSizeTxt.setText("Shoe Size");
+				shoesTypeTxt.setText("Shoe Type");
+				shoesLacesTxt.setText("Shoe Laces");
+				topSleevesTxt.setText("Top Sleeves");
+				topCollarTxt.setText("Top Collar");
+				topSizeTxt.setText("Top Size");
+				topTypeTxt.setText("Top Type");
 			}
 		});
 

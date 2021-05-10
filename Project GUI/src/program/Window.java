@@ -251,14 +251,14 @@ public class Window {
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
-				
+
 				ClothesIDTxt.setText("ClothesID");
 				ReceiptIDTxt.setText("ReceiptID");
 				ClientIDTxt.setText("ClientID");
 				DateTimeTxt.setText("YYYY-MM-DD");
 				MethodOfPayTxt.setText("Method of Payment");
 				WorkerIDTxt.setText("WorkerID");
-				
+
 			}
 		});
 		panel_5.add(btnPurchase);
@@ -821,26 +821,6 @@ public class Window {
 		bottomTools.add(panel_3);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-//		// Fetch clients from database
-//		ResultSet clientsRes = DatabaseRetrieval.executeQuery("SELECT * FROM Clients");
-//		// Initialize result arrays
-//		ArrayList<String> clientsResArray = new ArrayList<String>();
-//		// Add data from resultset to corresponding array
-//		try {
-//			while (clientsRes.next()) {
-//				clientsResArray.add(clientsRes.getString("ClientID"));
-//			}
-//
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}
-//
-//		// Transform result arrays into string arrays since the comboBoxModel only
-//		// accepts it
-//		String[] ClientList = new String[clientsResArray.size() + 1];
-//		// Set Model to the resulting string arrays
-//		ClientList = clientsResArray.toArray(ClientList);
-
 		JComboBox<?> ClientIDs = new JComboBox<Object>();
 		ClientIDs.addMouseListener(new MouseAdapter() {
 			@Override
@@ -968,7 +948,7 @@ public class Window {
 		clothesIdTxt = new JTextField();
 		clothesIdTxt.setBackground(SystemColor.info);
 		clothesIdTxt.setText("Clothes ID");
-		clothesIdTxt.setToolTipText("");
+		clothesIdTxt.setToolTipText("12 (int)");
 		clothesIdTxt.setBounds(360, 8, 86, 20);
 		panel_4.add(clothesIdTxt);
 		clothesIdTxt.setColumns(10);
@@ -976,7 +956,7 @@ public class Window {
 		ColorTxt = new JTextField();
 		ColorTxt.setBackground(SystemColor.info);
 		ColorTxt.setText("Color");
-		ColorTxt.setToolTipText("Color");
+		ColorTxt.setToolTipText("red (string)");
 		ColorTxt.setBounds(456, 8, 86, 20);
 		panel_4.add(ColorTxt);
 		ColorTxt.setColumns(10);
@@ -985,14 +965,14 @@ public class Window {
 		BrandTxt.setBackground(SystemColor.info);
 		BrandTxt.setText("Brand");
 		BrandTxt.setBounds(547, 8, 86, 20);
-		BrandTxt.setToolTipText("Brand");
+		BrandTxt.setToolTipText("gucci (string)");
 		panel_4.add(BrandTxt);
 		BrandTxt.setColumns(10);
 
 		MaterialTxt = new JTextField();
 		MaterialTxt.setBackground(SystemColor.info);
 		MaterialTxt.setText("Material");
-		MaterialTxt.setToolTipText("Material");
+		MaterialTxt.setToolTipText("silk (string)");
 		MaterialTxt.setBounds(643, 8, 86, 20);
 		panel_4.add(MaterialTxt);
 		MaterialTxt.setColumns(10);
@@ -1000,7 +980,7 @@ public class Window {
 		PriceTxt = new JTextField();
 		PriceTxt.setBackground(SystemColor.info);
 		PriceTxt.setText("Price");
-		PriceTxt.setToolTipText("Price");
+		PriceTxt.setToolTipText("23.10 (dec(4,2))");
 		PriceTxt.setBounds(739, 8, 86, 20);
 		panel_4.add(PriceTxt);
 		PriceTxt.setColumns(10);
@@ -1008,7 +988,7 @@ public class Window {
 		GenderTxt = new JTextField();
 		GenderTxt.setBackground(SystemColor.info);
 		GenderTxt.setText("Gender");
-		GenderTxt.setToolTipText("Gender");
+		GenderTxt.setToolTipText("F/M (Char)");
 		GenderTxt.setBounds(835, 8, 86, 20);
 		panel_4.add(GenderTxt);
 		GenderTxt.setColumns(10);
@@ -1016,7 +996,7 @@ public class Window {
 		dressLengthTxt = new JTextField();
 		dressLengthTxt.setBackground(new Color(224, 255, 255));
 		dressLengthTxt.setText("Dress Length");
-		dressLengthTxt.setToolTipText("DressLength");
+		dressLengthTxt.setToolTipText("30in (string)");
 		dressLengthTxt.setBounds(168, 37, 86, 20);
 		panel_4.add(dressLengthTxt);
 		dressLengthTxt.setColumns(10);
@@ -1024,7 +1004,7 @@ public class Window {
 		dressTypeTxt = new JTextField();
 		dressTypeTxt.setBackground(new Color(224, 255, 255));
 		dressTypeTxt.setText("Dress Type");
-		dressTypeTxt.setToolTipText("Dress Type");
+		dressTypeTxt.setToolTipText("X (string)");
 		dressTypeTxt.setBounds(264, 37, 86, 20);
 		panel_4.add(dressTypeTxt);
 		dressTypeTxt.setColumns(10);
@@ -1032,22 +1012,22 @@ public class Window {
 		hatSizeTxt = new JTextField();
 		hatSizeTxt.setBackground(new Color(230, 230, 250));
 		hatSizeTxt.setText("Hat Size");
-		hatSizeTxt.setToolTipText("Hat Size");
+		hatSizeTxt.setToolTipText("small (string)");
 		hatSizeTxt.setBounds(360, 37, 86, 20);
 		panel_4.add(hatSizeTxt);
 		hatSizeTxt.setColumns(10);
 
 		hatTypeTxt = new JTextField();
 		hatTypeTxt.setBackground(new Color(230, 230, 250));
-		hatTypeTxt.setToolTipText("Hat Type");
 		hatTypeTxt.setText("Hat Type");
+		hatTypeTxt.setToolTipText("sun hat (string)");
 		hatTypeTxt.setBounds(456, 37, 86, 20);
 		panel_4.add(hatTypeTxt);
 		hatTypeTxt.setColumns(10);
 
 		pantsLengthTxt = new JTextField();
 		pantsLengthTxt.setBackground(new Color(255, 240, 245));
-
+		pantsLengthTxt.setToolTipText("30in (string)");
 		pantsLengthTxt.setText("Pants Length");
 		pantsLengthTxt.setBounds(547, 37, 86, 20);
 		panel_4.add(pantsLengthTxt);
@@ -1055,6 +1035,7 @@ public class Window {
 
 		pantsFitTxt = new JTextField();
 		pantsFitTxt.setBackground(new Color(255, 240, 245));
+		pantsFitTxt.setToolTipText("X (string)");
 		pantsFitTxt.setText("Pants Fit");
 		pantsFitTxt.setBounds(643, 37, 86, 20);
 		panel_4.add(pantsFitTxt);
@@ -1062,6 +1043,7 @@ public class Window {
 
 		pantsWaistSizeTxt = new JTextField();
 		pantsWaistSizeTxt.setBackground(new Color(255, 240, 245));
+		pantsWaistSizeTxt.setToolTipText("X (string)");
 		pantsWaistSizeTxt.setText("Waist Size");
 		pantsWaistSizeTxt.setBounds(739, 37, 86, 20);
 		panel_4.add(pantsWaistSizeTxt);
@@ -1070,6 +1052,7 @@ public class Window {
 		pantssTypeTxt = new JTextField();
 		pantssTypeTxt.setBackground(new Color(255, 240, 245));
 		pantssTypeTxt.setText("Pants Type");
+		pantssTypeTxt.setToolTipText("X (string)");
 		pantssTypeTxt.setBounds(835, 37, 86, 20);
 		panel_4.add(pantssTypeTxt);
 		pantssTypeTxt.setColumns(10);
@@ -1077,6 +1060,7 @@ public class Window {
 		pantsInseamTxt = new JTextField();
 		pantsInseamTxt.setBackground(new Color(255, 240, 245));
 		pantsInseamTxt.setText("Pants Inseam");
+		pantsInseamTxt.setToolTipText("X (string)");
 		pantsInseamTxt.setBounds(168, 66, 86, 20);
 		panel_4.add(pantsInseamTxt);
 		pantsInseamTxt.setColumns(10);
@@ -1084,6 +1068,7 @@ public class Window {
 		shoesSizeTxt = new JTextField();
 		shoesSizeTxt.setBackground(new Color(255, 182, 193));
 		shoesSizeTxt.setText("Shoe Size");
+		shoesSizeTxt.setToolTipText("X (string)");
 		shoesSizeTxt.setBounds(264, 66, 86, 20);
 		panel_4.add(shoesSizeTxt);
 		shoesSizeTxt.setColumns(10);
@@ -1091,6 +1076,7 @@ public class Window {
 		shoesTypeTxt = new JTextField();
 		shoesTypeTxt.setBackground(new Color(255, 182, 193));
 		shoesTypeTxt.setText("Shoe Type");
+		shoesTypeTxt.setToolTipText("X (string)");
 		shoesTypeTxt.setBounds(360, 66, 86, 20);
 		panel_4.add(shoesTypeTxt);
 		shoesTypeTxt.setColumns(10);
@@ -1098,6 +1084,7 @@ public class Window {
 		shoesLacesTxt = new JTextField();
 		shoesLacesTxt.setBackground(new Color(255, 182, 193));
 		shoesLacesTxt.setText("Shoe Laces");
+		shoesLacesTxt.setToolTipText("X (string)");
 		shoesLacesTxt.setBounds(456, 66, 86, 20);
 		panel_4.add(shoesLacesTxt);
 		shoesLacesTxt.setColumns(10);
@@ -1105,6 +1092,7 @@ public class Window {
 		topSleevesTxt = new JTextField();
 		topSleevesTxt.setBackground(new Color(255, 218, 185));
 		topSleevesTxt.setText("Top Sleeves");
+		topSleevesTxt.setToolTipText("X (string)");
 		topSleevesTxt.setBounds(547, 66, 86, 20);
 		panel_4.add(topSleevesTxt);
 		topSleevesTxt.setColumns(10);
@@ -1112,21 +1100,23 @@ public class Window {
 		topCollarTxt = new JTextField();
 		topCollarTxt.setBackground(new Color(255, 218, 185));
 		topCollarTxt.setText("Top Collar");
+		topCollarTxt.setToolTipText("X (string)");
 		topCollarTxt.setBounds(643, 66, 86, 20);
 		panel_4.add(topCollarTxt);
 		topCollarTxt.setColumns(10);
 
 		topSizeTxt = new JTextField();
 		topSizeTxt.setBackground(new Color(255, 218, 185));
-		topCollarTxt.setText("Top Collar");
 		topSizeTxt.setBounds(739, 66, 86, 20);
 		panel_4.add(topSizeTxt);
 		topSizeTxt.setText("Top Size");
+		topSizeTxt.setToolTipText("X (string)");
 		topSizeTxt.setColumns(10);
 
 		topTypeTxt = new JTextField();
 		topTypeTxt.setBackground(new Color(255, 218, 185));
 		topTypeTxt.setText("Top Type");
+		topTypeTxt.setToolTipText("X (string)");
 		topTypeTxt.setBounds(835, 66, 86, 20);
 		panel_4.add(topTypeTxt);
 		topTypeTxt.setColumns(10);
@@ -1136,40 +1126,54 @@ public class Window {
 		panel_4.add(btnInsert);
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-
-				String clothesSql = "INSERT INTO clothesshop.Clothes (clothesid, color, brand, material, price, gender, category) VALUES ('"
-						+ clothesIdTxt.getText() + "', '" + ColorTxt.getText() + "', '" + BrandTxt.getText() + "', '"
-						+ MaterialTxt.getText() + "', '" + PriceTxt.getText() + "', '" + GenderTxt.getText() + "', '"
-						+ Category.getSelectedItem() + "')";
-				String sql = "INSERT INTO clothesshop." + Category.getSelectedItem();
-				;
-				if (Category.getSelectedItem().equals("Dresses")) {
-					sql += " (`ClothesID`, `Length`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
-							+ dressLengthTxt.getText() + "', '" + dressTypeTxt.getText() + "')";
-				} else if (Category.getSelectedItem().equals("Tops")) {
-					sql += " (`ClothesID`, `Sleeves`, `Collar`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText()
-							+ "', '" + topSleevesTxt.getText() + "', '" + topCollarTxt.getText() + "', '"
-							+ topSizeTxt.getText() + "', '" + topTypeTxt.getText() + "')";
-				} else if (Category.getSelectedItem().equals("Hats")) {
-					sql += "(`ClothesID`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
-							+ hatSizeTxt.getText() + "', '" + hatTypeTxt.getText() + "')";
-				} else if (Category.getSelectedItem().equals("Shoes")) {
-					sql += "(`ClothesID`, `Size`, `Type`, `Laces`) VALUES ('" + clothesIdTxt.getText() + "', '"
-							+ shoesSizeTxt.getText() + "', '" + shoesTypeTxt.getText() + "', '"
-							+ shoesLacesTxt.getText() + "')";
-				} else if (Category.getSelectedItem().equals("Pants")) {
-					sql += "(`ClothesID`, `Length`, `Fit`, `WaistSize`, `Type`, `Inseam`) VALUES ('"
-							+ clothesIdTxt.getText() + "', '" + pantsLengthTxt.getText() + "', '"
-							+ pantsFitTxt.getText() + "', '" + pantsWaistSizeTxt.getText() + "', '"
-							+ pantssTypeTxt.getText() + "', '" + pantsInseamTxt.getText() + "')";
-				}
-
 				try {
+					ResultSet testRes = DatabaseRetrieval
+							.executeQuery("SELECT ClothesID FROM clothesshop.AllClothes WHERE ClothesID='"
+									+ clothesIdTxt.getText() + "';");
+					ArrayList<String> testResArray = new ArrayList<String>();
+					while (testRes.next()) {
+						testResArray.add(testRes.getString("ClothesID"));
+					}
+					if (!testResArray.isEmpty()) {
+						throw new Exception("Clothes Item Already Exists (Duplicate ClothesID)");
+					}
+
+					String clothesSql = "INSERT INTO clothesshop.Clothes (clothesid, color, brand, material, price, gender, category) VALUES ('"
+							+ clothesIdTxt.getText() + "', '" + ColorTxt.getText() + "', '" + BrandTxt.getText()
+							+ "', '" + MaterialTxt.getText() + "', '" + PriceTxt.getText() + "', '"
+							+ GenderTxt.getText() + "', '" + Category.getSelectedItem() + "')";
+					String sql = "INSERT INTO clothesshop." + Category.getSelectedItem();
+					;
+					if (Category.getSelectedItem().equals("Dresses")) {
+						sql += " (`ClothesID`, `Length`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
+								+ dressLengthTxt.getText() + "', '" + dressTypeTxt.getText() + "')";
+					} else if (Category.getSelectedItem().equals("Tops")) {
+						sql += " (`ClothesID`, `Sleeves`, `Collar`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText()
+								+ "', '" + topSleevesTxt.getText() + "', '" + topCollarTxt.getText() + "', '"
+								+ topSizeTxt.getText() + "', '" + topTypeTxt.getText() + "')";
+					} else if (Category.getSelectedItem().equals("Hats")) {
+						sql += "(`ClothesID`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
+								+ hatSizeTxt.getText() + "', '" + hatTypeTxt.getText() + "')";
+					} else if (Category.getSelectedItem().equals("Shoes")) {
+						sql += "(`ClothesID`, `Size`, `Type`, `Laces`) VALUES ('" + clothesIdTxt.getText() + "', '"
+								+ shoesSizeTxt.getText() + "', '" + shoesTypeTxt.getText() + "', '"
+								+ shoesLacesTxt.getText() + "')";
+					} else if (Category.getSelectedItem().equals("Pants")) {
+						sql += "(`ClothesID`, `Length`, `Fit`, `WaistSize`, `Type`, `Inseam`) VALUES ('"
+								+ clothesIdTxt.getText() + "', '" + pantsLengthTxt.getText() + "', '"
+								+ pantsFitTxt.getText() + "', '" + pantsWaistSizeTxt.getText() + "', '"
+								+ pantssTypeTxt.getText() + "', '" + pantsInseamTxt.getText() + "')";
+					}
+
 					DatabaseRetrieval.executeUpdate(clothesSql);
 					DatabaseRetrieval.executeUpdate(sql);
+					JOptionPane.showMessageDialog(null, "Clothing item added", "Success", JOptionPane.OK_OPTION);
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Fill out the necessary fields.");
+					if (e1.getMessage().equals("Clothes Item Already Exists (Duplicate ClothesID)")) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					} else {
+						JOptionPane.showMessageDialog(null, "Fill out the necessary fields.");
+					}
 				}
 				clothesIdTxt.setText("Clothes ID");
 				ColorTxt.setText("Color");
@@ -1180,7 +1184,7 @@ public class Window {
 				dressLengthTxt.setText("Dress Length");
 				dressTypeTxt.setText("Dress Type");
 				hatSizeTxt.setText("Hat Size");
-				hatTypeTxt.setToolTipText("Hat Type");
+				hatTypeTxt.setText("Hat Type");
 				pantsLengthTxt.setText("Pants Length");
 				pantsFitTxt.setText("Pants Fit");
 				pantsWaistSizeTxt.setText("Waist Size");

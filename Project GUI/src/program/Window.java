@@ -238,6 +238,7 @@ public class Window {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 		JPanel bottomTools = new JPanel();
+		bottomTools.setMaximumSize(new Dimension(100000, 32767));
 		bottomTools.setPreferredSize(new Dimension(10, 275));
 		wrapper.add(bottomTools, BorderLayout.SOUTH);
 
@@ -941,6 +942,7 @@ public class Window {
 		hatTypeTxt.setColumns(10);
 
 		pantsLengthTxt = new JTextField();
+
 		pantsLengthTxt.setText("Pants Length");
 		pantsLengthTxt.setBounds(547, 37, 86, 20);
 		panel_4.add(pantsLengthTxt);
@@ -1001,9 +1003,10 @@ public class Window {
 		topCollarTxt.setColumns(10);
 
 		topSizeTxt = new JTextField();
+		topCollarTxt.setText("Top Collar");
 		topSizeTxt.setBounds(739, 66, 86, 20);
 		panel_4.add(topSizeTxt);
-		topSizeTxt.setText("topSize");
+		topSizeTxt.setText("Top Size");
 		topSizeTxt.setColumns(10);
 
 		topTypeTxt = new JTextField();
@@ -1015,35 +1018,62 @@ public class Window {
 		JButton btnInsert = new JButton("Insert");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sql = "INSERT INTO `" + Category.getSelectedItem() + "`";
-				if(Category.getSelectedItem().equals("Dresses")) {
-					sql += " (`ClothesID`, `Length`, `Type`) VALUES ('" + clothesIdTxt.getText() +  "', '"+ dressLengthTxt.getText() +"', '" + dressTypeTxt.getText() + "')";
+
+				clothesIdTxt.setText("Clothes ID");
+				ColorTxt.setText("Color");
+				BrandTxt.setText("Brand");
+				MaterialTxt.setText("Material");
+				PriceTxt.setText("Price");
+				GenderTxt.setText("Gender");
+				dressLengthTxt.setText("Dress Length");
+				dressTypeTxt.setText("Dress Type");
+				hatSizeTxt.setText("Hat Size");
+				hatTypeTxt.setToolTipText("Hat Type");
+				pantsLengthTxt.setText("Pants Length");
+				pantsFitTxt.setText("Pants Fit");
+				pantsWaistSizeTxt.setText("Waist Size");
+				pantssTypeTxt.setText("Pants Type");
+				pantsInseamTxt.setText("Pants Inseam");
+				shoesSizeTxt.setText("Shoe Size");
+				shoesTypeTxt.setText("Shoe Type");
+				shoesLacesTxt.setText("Shoe Laces");
+				topSleevesTxt.setText("Top Sleeves");
+				topCollarTxt.setText("Top Collar");
+				topSizeTxt.setText("Top Size");
+				topTypeTxt.setText("Top Type");
+
+				String clothesSql = "INSERT INTO clothesshop.Clothes (clothesid, color, brand, material, price, gender, category) VALUES ('"
+						+ clothesIdTxt.getText() + "', '" + ColorTxt.getText() + "', '" + BrandTxt.getText() + "', '"
+						+ MaterialTxt.getText() + "', '" + PriceTxt.getText() + "', '" + GenderTxt.getText() + "', '"
+						+ Category.getSelectedItem() + "')";
+				String sql = "INSERT INTO clothesshop." + Category.getSelectedItem();
+				;
+				if (Category.getSelectedItem().equals("Dresses")) {
+					sql += " (`ClothesID`, `Length`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
+							+ dressLengthTxt.getText() + "', '" + dressTypeTxt.getText() + "')";
+				} else if (Category.getSelectedItem().equals("Tops")) {
+					sql += " (`ClothesID`, `Sleeves`, `Collar`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText()
+							+ "', '" + topSleevesTxt.getText() + "', '" + topCollarTxt.getText() + "', '"
+							+ topSizeTxt.getText() + "', '" + topTypeTxt.getText() + "')";
+				} else if (Category.getSelectedItem().equals("Hats")) {
+					sql += "(`ClothesID`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '"
+							+ hatSizeTxt.getText() + "', '" + hatTypeTxt.getText() + "')";
+				} else if (Category.getSelectedItem().equals("Shoes")) {
+					sql += "(`ClothesID`, `Size`, `Type`, `Laces`) VALUES ('" + clothesIdTxt.getText() + "', '"
+							+ shoesSizeTxt.getText() + "', '" + shoesTypeTxt.getText() + "', '"
+							+ shoesLacesTxt.getText() + "')";
+				} else if (Category.getSelectedItem().equals("Pants")) {
+					sql += "(`ClothesID`, `Length`, `Fit`, `WaistSize`, `Type`, `Inseam`) VALUES ('"
+							+ clothesIdTxt.getText() + "', '" + pantsLengthTxt.getText() + "', '"
+							+ pantsFitTxt.getText() + "', '" + pantsWaistSizeTxt.getText() + "', '"
+							+ pantssTypeTxt.getText() + "', '" + pantsInseamTxt.getText() + "')";
 				}
-				else if(Category.getSelectedItem().equals("Tops")) {
-					sql += " (`ClothesID`, `Sleeves`, `Collar`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '" + topSleevesTxt.getText() + "', '" + topCollarTxt.getText() + "', '" + topSizeTxt.getText() + "', '" + topTypeTxt.getText() + "')";
-				}
-				else if(Category.getSelectedItem().equals("Hats")) {
-					sql += "(`ClothesID`, `Size`, `Type`) VALUES ('" + clothesIdTxt.getText() + "', '" + hatSizeTxt.getText() + "', '" + hatTypeTxt.getText() + "')";
-				}
-				else if(Category.getSelectedItem().equals("Shoes")) {
-					sql += "(`ClothesID`, `Size`, `Type`, `Laces`) VALUES ('" + clothesIdTxt.getText() + "', '" + shoesSizeTxt.getText() + "', '" + shoesTypeTxt.getText() + "', '" + shoesLacesTxt.getText() + "')";
-				}
-				else if (Category.getSelectedItem().equals("Pants")){
-					sql += "(`ClothesID`, `Length`, `Fit`, `WaistSize`, `Type`, `Inseam`) VALUES ('" + clothesIdTxt.getText() + "', '" + pantsLengthTxt.getText() + "', '" + pantsFitTxt.getText() + "', '" + pantsWaistSizeTxt.getText() + "', '" + pantssTypeTxt.getText() + "', '"+ pantsInseamTxt.getText() +"')";
-				}
-				
-				System.out.println(sql);
+
 				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://207.154.239.35/clothesshop", "root", "cmps277");
-					Statement stmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-					stmt.executeUpdate(sql);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					DatabaseRetrieval.executeUpdate(clothesSql);
+					DatabaseRetrieval.executeUpdate(sql);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Fill out the necessary fields.");
 				}
 			}
 		});

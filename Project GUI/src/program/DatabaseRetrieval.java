@@ -33,18 +33,15 @@ public class DatabaseRetrieval {
 		}
 	}
 
-	public static int executeUpdate(String sql) {
-		try {
+	public static int executeUpdate(String sql) throws ClassNotFoundException, SQLException {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// clothesshop is the db name, username, pass
 			con = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "");
 			
 			Statement stmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			return stmt.executeUpdate(sql);
-		} catch (Exception e) {
-			System.out.println(e);
-			return -1;
-		}
+		
+			
 	}
 
 	public static TableClass display(String sql) {

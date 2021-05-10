@@ -20,9 +20,6 @@ import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.Box;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
@@ -116,29 +113,6 @@ public class Window {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1031, 656);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////// Window Menu
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(Color.DARK_GRAY);
-		frame.getContentPane().add(menuBar, BorderLayout.NORTH);
-
-		JMenu Server = new JMenu("Server");
-		Server.setForeground(Color.WHITE);
-		menuBar.add(Server);
-
-		JMenuItem Connect = new JMenuItem("Connect");
-		Server.add(Connect);
-
-		JMenu Export = new JMenu("Export");
-		Export.setForeground(Color.WHITE);
-		menuBar.add(Export);
-
-		JMenuItem exportToCSV = new JMenuItem("To CSV file");
-		Export.add(exportToCSV);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

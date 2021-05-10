@@ -2,7 +2,7 @@
 .metadata
 bin/
 tmp/
-.project
-.settings
-.classpath
+#.project
+#.settings
+#.classpath
 .launch

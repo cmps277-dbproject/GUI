@@ -1,2 +1,1 @@
-INDEX VERSION 1.131+C:\Users\Souad\Desktop\CMPS277\DesktopApp\.metadata\.plugins\org.eclipse.jdt.core
-2196199803.index
+INDEX VERSION 1.131+F:\AUB\5.Spring.2021\CMPS 277 Wadi' - Database Systems\project\GUI\.metadata\.plugins\org.eclipse.jdt.core

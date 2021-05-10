@@ -44,6 +44,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class Window {
 
@@ -245,7 +246,7 @@ public class Window {
 // Show All Clothes Button	--------------------------------------------------------------------
 		JButton btnShowAllClothes = new JButton("Show All Clothes");
 		btnShowAllClothes.setPreferredSize(new Dimension(300, 23));
-		btnShowAllClothes.setBounds(23, 12, 133, 23);
+		btnShowAllClothes.setBounds(40, 11, 133, 23);
 		btnShowAllClothes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TableClass c = DatabaseRetrieval.display("SELECT * FROM AllClothes");
@@ -327,7 +328,7 @@ public class Window {
 // Show Suppliers Button	--------------------------------------------------------------------
 		JButton btnShowSuppliers = new JButton("Show Suppliers");
 		btnShowSuppliers.setPreferredSize(new Dimension(500, 23));
-		btnShowSuppliers.setBounds(164, 12, 123, 23);
+		btnShowSuppliers.setBounds(181, 11, 123, 23);
 		btnShowSuppliers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnShowSuppliers.addMouseListener(new MouseAdapter() {
 			@Override
@@ -356,7 +357,7 @@ public class Window {
 
 // Show Clients Button	--------------------------------------------------------------------
 		JButton btnShowClients = new JButton("Show Clients");
-		btnShowClients.setBounds(23, 53, 133, 23);
+		btnShowClients.setBounds(40, 52, 133, 23);
 		btnShowClients.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnShowClients.addMouseListener(new MouseAdapter() {
 			@Override
@@ -384,7 +385,7 @@ public class Window {
 		bottomTools.add(btnShowClients);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(297, 12, 587, 37);
+		panel.setBounds(314, 11, 661, 37);
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		bottomTools.add(panel);
 
@@ -412,7 +413,7 @@ public class Window {
 				setDisplayedTable(c);
 			}
 		});
-		btnNewButton_3.setBounds(164, 53, 123, 23);
+		btnNewButton_3.setBounds(181, 52, 123, 23);
 		bottomTools.add(btnNewButton_3);
 		bottomTools.add(btnShowSuppliers);
 
@@ -600,7 +601,7 @@ public class Window {
 /////////////////////////////////////////
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(297, 53, 294, 36);
+		panel_1.setBounds(489, 57, 324, 37);
 		bottomTools.add(panel_1);
 
 		// Fetch suppliers from database
@@ -678,7 +679,7 @@ public class Window {
 //				setTableClick(table);
 			}
 		});
-		btnClothesBought.setBounds(23, 102, 264, 23);
+		btnClothesBought.setBounds(40, 101, 264, 23);
 		bottomTools.add(btnClothesBought);
 
 /////////////////////////////////////////
@@ -688,7 +689,7 @@ public class Window {
 /////////////////////////////////////////
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(297, 100, 324, 37);
+		panel_2.setBounds(314, 100, 324, 37);
 		bottomTools.add(panel_2);
 
 		// Fetch receipt from database
@@ -750,7 +751,7 @@ public class Window {
 /////////////////////////////////////////
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_3.setBounds(634, 96, 324, 41);
+		panel_3.setBounds(651, 100, 324, 37);
 		bottomTools.add(panel_3);
 
 		// Fetch clients from database
@@ -853,12 +854,12 @@ public class Window {
 			}
 
 		});
-		btnEmployeesManagers.setBounds(23, 136, 264, 23);
+		btnEmployeesManagers.setBounds(40, 135, 264, 23);
 		bottomTools.add(btnEmployeesManagers);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_4.setBounds(10, 170, 935, 96);
+		panel_4.setBounds(40, 169, 935, 96);
 		bottomTools.add(panel_4);
 		panel_4.setLayout(null);
 
@@ -872,48 +873,55 @@ public class Window {
 		panel_4.add(Category);
 
 		clothesIdTxt = new JTextField();
+		clothesIdTxt.setBackground(SystemColor.info);
 		clothesIdTxt.setText("Clothes ID");
 		clothesIdTxt.setToolTipText("");
-		clothesIdTxt.setBounds(92, 8, 86, 20);
+		clothesIdTxt.setBounds(360, 8, 86, 20);
 		panel_4.add(clothesIdTxt);
 		clothesIdTxt.setColumns(10);
 
 		ColorTxt = new JTextField();
+		ColorTxt.setBackground(SystemColor.info);
 		ColorTxt.setText("Color");
 		ColorTxt.setToolTipText("Color");
-		ColorTxt.setBounds(183, 8, 86, 20);
+		ColorTxt.setBounds(456, 8, 86, 20);
 		panel_4.add(ColorTxt);
 		ColorTxt.setColumns(10);
 
 		BrandTxt = new JTextField();
+		BrandTxt.setBackground(SystemColor.info);
 		BrandTxt.setText("Brand");
-		BrandTxt.setBounds(274, 8, 86, 20);
+		BrandTxt.setBounds(547, 8, 86, 20);
 		BrandTxt.setToolTipText("Brand");
 		panel_4.add(BrandTxt);
 		BrandTxt.setColumns(10);
 
 		MaterialTxt = new JTextField();
+		MaterialTxt.setBackground(SystemColor.info);
 		MaterialTxt.setText("Material");
 		MaterialTxt.setToolTipText("Material");
-		MaterialTxt.setBounds(365, 8, 86, 20);
+		MaterialTxt.setBounds(643, 8, 86, 20);
 		panel_4.add(MaterialTxt);
 		MaterialTxt.setColumns(10);
 
 		PriceTxt = new JTextField();
+		PriceTxt.setBackground(SystemColor.info);
 		PriceTxt.setText("Price");
 		PriceTxt.setToolTipText("Price");
-		PriceTxt.setBounds(456, 8, 86, 20);
+		PriceTxt.setBounds(739, 8, 86, 20);
 		panel_4.add(PriceTxt);
 		PriceTxt.setColumns(10);
 
 		GenderTxt = new JTextField();
+		GenderTxt.setBackground(SystemColor.info);
 		GenderTxt.setText("Gender");
 		GenderTxt.setToolTipText("Gender");
-		GenderTxt.setBounds(547, 8, 86, 20);
+		GenderTxt.setBounds(835, 8, 86, 20);
 		panel_4.add(GenderTxt);
 		GenderTxt.setColumns(10);
 
 		dressLengthTxt = new JTextField();
+		dressLengthTxt.setBackground(new Color(224, 255, 255));
 		dressLengthTxt.setText("Dress Length");
 		dressLengthTxt.setToolTipText("DressLength");
 		dressLengthTxt.setBounds(168, 37, 86, 20);
@@ -921,6 +929,7 @@ public class Window {
 		dressLengthTxt.setColumns(10);
 
 		dressTypeTxt = new JTextField();
+		dressTypeTxt.setBackground(new Color(224, 255, 255));
 		dressTypeTxt.setText("Dress Type");
 		dressTypeTxt.setToolTipText("Dress Type");
 		dressTypeTxt.setBounds(264, 37, 86, 20);
@@ -928,6 +937,7 @@ public class Window {
 		dressTypeTxt.setColumns(10);
 
 		hatSizeTxt = new JTextField();
+		hatSizeTxt.setBackground(new Color(230, 230, 250));
 		hatSizeTxt.setText("Hat Size");
 		hatSizeTxt.setToolTipText("Hat Size");
 		hatSizeTxt.setBounds(360, 37, 86, 20);
@@ -935,6 +945,7 @@ public class Window {
 		hatSizeTxt.setColumns(10);
 
 		hatTypeTxt = new JTextField();
+		hatTypeTxt.setBackground(new Color(230, 230, 250));
 		hatTypeTxt.setToolTipText("Hat Type");
 		hatTypeTxt.setText("Hat Type");
 		hatTypeTxt.setBounds(456, 37, 86, 20);
@@ -942,6 +953,7 @@ public class Window {
 		hatTypeTxt.setColumns(10);
 
 		pantsLengthTxt = new JTextField();
+		pantsLengthTxt.setBackground(new Color(255, 240, 245));
 
 		pantsLengthTxt.setText("Pants Length");
 		pantsLengthTxt.setBounds(547, 37, 86, 20);
@@ -949,60 +961,70 @@ public class Window {
 		pantsLengthTxt.setColumns(10);
 
 		pantsFitTxt = new JTextField();
+		pantsFitTxt.setBackground(new Color(255, 240, 245));
 		pantsFitTxt.setText("Pants Fit");
 		pantsFitTxt.setBounds(643, 37, 86, 20);
 		panel_4.add(pantsFitTxt);
 		pantsFitTxt.setColumns(10);
 
 		pantsWaistSizeTxt = new JTextField();
+		pantsWaistSizeTxt.setBackground(new Color(255, 240, 245));
 		pantsWaistSizeTxt.setText("Waist Size");
 		pantsWaistSizeTxt.setBounds(739, 37, 86, 20);
 		panel_4.add(pantsWaistSizeTxt);
 		pantsWaistSizeTxt.setColumns(10);
 
 		pantssTypeTxt = new JTextField();
+		pantssTypeTxt.setBackground(new Color(255, 240, 245));
 		pantssTypeTxt.setText("Pants Type");
 		pantssTypeTxt.setBounds(835, 37, 86, 20);
 		panel_4.add(pantssTypeTxt);
 		pantssTypeTxt.setColumns(10);
 
 		pantsInseamTxt = new JTextField();
+		pantsInseamTxt.setBackground(new Color(255, 240, 245));
 		pantsInseamTxt.setText("Pants Inseam");
 		pantsInseamTxt.setBounds(168, 66, 86, 20);
 		panel_4.add(pantsInseamTxt);
 		pantsInseamTxt.setColumns(10);
 
 		shoesSizeTxt = new JTextField();
+		shoesSizeTxt.setBackground(new Color(255, 182, 193));
 		shoesSizeTxt.setText("Shoe Size");
 		shoesSizeTxt.setBounds(264, 66, 86, 20);
 		panel_4.add(shoesSizeTxt);
 		shoesSizeTxt.setColumns(10);
 
 		shoesTypeTxt = new JTextField();
+		shoesTypeTxt.setBackground(new Color(255, 182, 193));
 		shoesTypeTxt.setText("Shoe Type");
 		shoesTypeTxt.setBounds(360, 66, 86, 20);
 		panel_4.add(shoesTypeTxt);
 		shoesTypeTxt.setColumns(10);
 
 		shoesLacesTxt = new JTextField();
+		shoesLacesTxt.setBackground(new Color(255, 182, 193));
 		shoesLacesTxt.setText("Shoe Laces");
 		shoesLacesTxt.setBounds(456, 66, 86, 20);
 		panel_4.add(shoesLacesTxt);
 		shoesLacesTxt.setColumns(10);
 
 		topSleevesTxt = new JTextField();
+		topSleevesTxt.setBackground(new Color(255, 218, 185));
 		topSleevesTxt.setText("Top Sleeves");
 		topSleevesTxt.setBounds(547, 66, 86, 20);
 		panel_4.add(topSleevesTxt);
 		topSleevesTxt.setColumns(10);
 
 		topCollarTxt = new JTextField();
+		topCollarTxt.setBackground(new Color(255, 218, 185));
 		topCollarTxt.setText("Top Collar");
 		topCollarTxt.setBounds(643, 66, 86, 20);
 		panel_4.add(topCollarTxt);
 		topCollarTxt.setColumns(10);
 
 		topSizeTxt = new JTextField();
+		topSizeTxt.setBackground(new Color(255, 218, 185));
 		topCollarTxt.setText("Top Collar");
 		topSizeTxt.setBounds(739, 66, 86, 20);
 		panel_4.add(topSizeTxt);
@@ -1010,12 +1032,15 @@ public class Window {
 		topSizeTxt.setColumns(10);
 
 		topTypeTxt = new JTextField();
+		topTypeTxt.setBackground(new Color(255, 218, 185));
 		topTypeTxt.setText("Top Type");
 		topTypeTxt.setBounds(835, 66, 86, 20);
 		panel_4.add(topTypeTxt);
 		topTypeTxt.setColumns(10);
 
 		JButton btnInsert = new JButton("Insert");
+		btnInsert.setBounds(22, 7, 278, 23);
+		panel_4.add(btnInsert);
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -1077,8 +1102,6 @@ public class Window {
 				}
 			}
 		});
-		btnInsert.setBounds(643, 7, 278, 23);
-		panel_4.add(btnInsert);
 
 	}
 }

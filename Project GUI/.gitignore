@@ -1,8 +1,8 @@
 ### Eclipse ###
-.metadata
+#.metadata
 bin/
-tmp/
-.project
-.settings
-.classpath
-.launch
+#tmp/
+#.project
+#.settings
+#.classpath
+#.launch

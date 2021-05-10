@@ -59,11 +59,12 @@ public class Main {
 					+ "   Phone VARCHAR(12),           \r\n" + "   Address VARCHAR(100),\r\n"
 					+ "   Email VARCHAR(20),\r\n" + "   PRIMARY KEY (ClientID)\r\n" + ");");
 			DatabaseRetrieval.executeUpdate("DROP TABLE IF EXISTS clothesshop.Receipt;");
-			DatabaseRetrieval.executeUpdate("create table clothesshop.Receipt (\r\n" + "   ClientID int NOT NULL,\r\n"
-					+ "   ReceiptID int NOT NULL AUTO_INCREMENT,\r\n" + "   Date_Time datetime,\r\n"
-					+ "   MethodOfPayment VARCHAR(20),\r\n" + "   WorkerID int,\r\n"
-					+ "   PRIMARY KEY (ReceiptID, ClientID),\r\n"
-					+ "   FOREIGN KEY (ClientID) REFERENCES Clients (ClientID)\r\n" + ");");
+			DatabaseRetrieval
+					.executeUpdate("create table clothesshop.Receipt (\r\n" + "   ID int NOT NULL AUTO_INCREMENT,\r\n"
+							+ "   ClientID int NOT NULL,\r\n" + "   ReceiptID int NOT NULL,\r\n"
+							+ "   Date_Time datetime,\r\n" + "   MethodOfPayment VARCHAR(20),\r\n"
+							+ "   WorkerID int,\r\n" + "   PRIMARY KEY (ID, ClientID, ReceiptID),\r\n"
+							+ "   FOREIGN KEY (ClientID) REFERENCES Clients (ClientID)\r\n" + ");");
 			DatabaseRetrieval.executeUpdate("CREATE INDEX ReceiptIdIndex on clothesshop.Receipt (ReceiptID ASC);");
 			DatabaseRetrieval.executeUpdate("DROP TABLE IF EXISTS clothesshop.Suppliers;");
 			DatabaseRetrieval.executeUpdate("create table clothesshop.Suppliers (\r\n"
@@ -196,14 +197,14 @@ public class Main {
 							+ "( 'Daoud', '03000003', 'Sudan', 'daoud@gmail.com'), \r\n"
 							+ "( 'Ema', '03000004', 'Brazil', 'ema@gmail.com');");
 			DatabaseRetrieval.executeUpdate("INSERT INTO clothesshop.Receipt\r\n"
-					+ "(`ClientID`, `Date_Time`, `MethodOfPayment`, `WorkerID`)  \r\n" + "VALUES \r\n"
-					+ "('1', '1000-01-01 00:00:00.000000', 'Credit Card', '1'), \r\n"
-					+ "('2', '1000-01-01 00:00:00.000000', 'Credit Card', '4'), \r\n"
-					+ "('3', '1000-01-01 00:00:00.000000', 'Credit Card', '4'), \r\n"
-					+ "('1', '1000-01-01 00:00:00.000000', 'Cash', '4'), \r\n"
-					+ "('5', '1000-01-01 00:00:00.000000', 'Cash', '1');");
+					+ "(`ClientID`, `ReceiptID`, `Date_Time`, `MethodOfPayment`, `WorkerID`)  \r\n" + "VALUES \r\n"
+					+ "('1', '1', '1000-01-01 00:00:00.000000', 'Credit Card', '1'), \r\n"
+					+ "('2', '2','1000-01-01 00:00:00.000000', 'Credit Card', '4'), \r\n"
+					+ "('3', '3','1000-01-01 00:00:00.000000', 'Credit Card', '4'), \r\n"
+					+ "('1', '5','1000-01-01 00:00:00.000000', 'Cash', '4'), \r\n"
+					+ "('5', '4','1000-01-01 00:00:00.000000', 'Cash', '1');");
 			DatabaseRetrieval.executeUpdate("INSERT INTO clothesshop.Clothes\r\n"
-					+ "( `ClientID`, `WorkerID`, `Color`, `Brand`, `Material`, `Price`, `Gender`, `Category`) \r\n"
+					+ "( `ClientID`,  `WorkerID`, `Color`, `Brand`, `Material`, `Price`, `Gender`, `Category`) \r\n"
 					+ "VALUES \r\n" + "( '1', '1', 'Yellow', 'H&M', 'silk', '22.22', 'F', 'dresses'),\r\n"
 					+ "( '1', '4', 'Orange', 'gucci', 'cloth', '99.99', 'F', 'tops'), \r\n"
 					+ "( '3', '4', 'black', 'converse', 'jeans', '50.76', 'X', 'shoes'),\r\n"

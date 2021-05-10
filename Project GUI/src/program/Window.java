@@ -20,6 +20,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
@@ -64,6 +65,12 @@ public class Window {
 	private JTextField topCollarTxt;
 	private JTextField topSizeTxt;
 	private JTextField topTypeTxt;
+	private JTextField ClothesIDTxt;
+	private JTextField ReceiptIDTxt;
+	private JTextField ClientIDTxt;
+	private JTextField DateTimeTxt;
+	private JTextField MethodOfPayTxt;
+	private JTextField WorkerIDTxt;
 
 	// Create the application.
 	public static void createWindow(String[] args) {
@@ -170,6 +177,83 @@ public class Window {
 			}
 		});
 		toolBar.add(btnDeleteRow);
+
+		JPanel panel_5 = new JPanel();
+		toolBar.add(panel_5);
+
+		ClothesIDTxt = new JTextField();
+		ClothesIDTxt.setText("ClothesID");
+		panel_5.add(ClothesIDTxt);
+		ClothesIDTxt.setColumns(7);
+
+		ReceiptIDTxt = new JTextField();
+		ReceiptIDTxt.setText("ReceiptID");
+		panel_5.add(ReceiptIDTxt);
+		ReceiptIDTxt.setColumns(7);
+
+		ClientIDTxt = new JTextField();
+		ClientIDTxt.setText("ClientID");
+		panel_5.add(ClientIDTxt);
+		ClientIDTxt.setColumns(7);
+
+		DateTimeTxt = new JTextField();
+		DateTimeTxt.setText("YYYY-MM-DD");
+		panel_5.add(DateTimeTxt);
+		DateTimeTxt.setColumns(12);
+
+		MethodOfPayTxt = new JTextField();
+		MethodOfPayTxt.setText("Method of Payment");
+		panel_5.add(MethodOfPayTxt);
+		MethodOfPayTxt.setColumns(13);
+
+		WorkerIDTxt = new JTextField();
+		WorkerIDTxt.setText("WorkerID");
+		panel_5.add(WorkerIDTxt);
+		WorkerIDTxt.setColumns(7);
+
+		JButton btnPurchase = new JButton("Purchase");
+		btnPurchase.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					if (ClothesIDTxt.getText().equals("ClothesID") || ReceiptIDTxt.getText().equals("ReceiptID")
+							|| ClientIDTxt.getText().equals("ClientID") || DateTimeTxt.getText().equals("YYYY-MM-DD")
+							|| MethodOfPayTxt.getText().equals("Method of Payment")
+							|| WorkerIDTxt.getText().equals("WorkerID")) {
+						throw new Exception("Fill out the necessary fields.");
+					} else {
+						// Check if clothes are bought
+						if (DatabaseRetrieval.executeQuery("SELECT ClientID FROM clothesshop.Clothes") != null) {
+							// Update clothes' clientID workerID
+							DatabaseRetrieval.executeUpdate("UPDATE clothesshop.Clothes SET ClientID="
+									+ ClientIDTxt.getText() + ", WorkerID=" + WorkerIDTxt.getText());
+						} else {
+							throw new Exception("Clothes is already bought.");
+						}
+
+						// Add Receipt
+						DatabaseRetrieval.executeUpdate(
+								"INSERT INTO clothesshop.Receipt (`ClientID`, `ReceiptID`, `Date_Time`, `MethodOfPayment`,`WorkerID`) VALUES "
+										+ "('" + ClientIDTxt.getText() + "', '" + ReceiptIDTxt.getText() + "', '"
+										+ DateTimeTxt.getText() + "', '" + MethodOfPayTxt.getText() + "', '"
+										+ WorkerIDTxt.getText() + "')");
+
+						// Add clothesReceipt
+						DatabaseRetrieval.executeUpdate(
+								"INSERT INTO clothesshop.ClothesReceipt (`ClothesID`, `ReceiptID`) VALUES " + "('"
+										+ ClothesIDTxt.getText() + "', '" + ReceiptIDTxt.getText() + "')");
+
+						JOptionPane.showMessageDialog(null, "Your purchase was successful!");
+					}
+
+				} catch (ClassNotFoundException | SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Receipt already exists");
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
+		panel_5.add(btnPurchase);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -657,29 +741,36 @@ public class Window {
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_2.setBounds(314, 100, 324, 37);
 		bottomTools.add(panel_2);
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		// Fetch receipt from database
-		ResultSet recRes = DatabaseRetrieval.executeQuery("SELECT * FROM Receipt");
-		// Initialize result arrays
-		ArrayList<String> receiptResArray = new ArrayList<String>();
-		// Add data from resultset to corresponding array
-		try {
-			while (recRes.next()) {
-				receiptResArray.add(recRes.getString("ReceiptID"));
+		JComboBox<?> ReceiptIDs = new JComboBox<Object>();
+		ReceiptIDs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// Fetch receipt from database
+				ResultSet recRes = DatabaseRetrieval.executeQuery("SELECT * FROM Receipt");
+				// Initialize result arrays
+				ArrayList<String> receiptResArray = new ArrayList<String>();
+				// Add data from resultset to corresponding array
+				try {
+					while (recRes.next()) {
+						receiptResArray.add(recRes.getString("ReceiptID"));
+					}
+
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				// Transform result arrays into string arrays since the comboBoxModel only
+				// accepts it
+				String[] ReceiptList = new String[receiptResArray.size()];
+				for (int i = 0; i < receiptResArray.size(); i++) {
+					ReceiptList[i] = receiptResArray.get(i);
+				}
+				// Set Model to the resulting string arrays
+				DefaultComboBoxModel model = new DefaultComboBoxModel(ReceiptList);
+				ReceiptIDs.setModel(model);
 			}
-
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-
-		// Transform result arrays into string arrays since the comboBoxModel only
-		// accepts it
-		String[] ReceiptList = new String[receiptResArray.size() + 1];
-		// Set Model to the resulting string arrays
-		ReceiptList = receiptResArray.toArray(ReceiptList);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JComboBox<?> ReceiptIDs = new JComboBox<Object>(ReceiptList);
+		});
 		ReceiptIDs.setToolTipText("Receipt ID");
 		ReceiptIDs.setPreferredSize(new Dimension(100, 22));
 		panel_2.add(ReceiptIDs);
@@ -720,29 +811,55 @@ public class Window {
 		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_3.setBounds(651, 100, 324, 37);
 		bottomTools.add(panel_3);
-
-		// Fetch clients from database
-		ResultSet clientsRes = DatabaseRetrieval.executeQuery("SELECT * FROM Clients");
-		// Initialize result arrays
-		ArrayList<String> clientsResArray = new ArrayList<String>();
-		// Add data from resultset to corresponding array
-		try {
-			while (clientsRes.next()) {
-				clientsResArray.add(clientsRes.getString("ClientID"));
-			}
-
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-
-		// Transform result arrays into string arrays since the comboBoxModel only
-		// accepts it
-		String[] ClientList = new String[clientsResArray.size() + 1];
-		// Set Model to the resulting string arrays
-		ClientList = clientsResArray.toArray(ClientList);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JComboBox<?> ClientIDs = new JComboBox<Object>(ClientList);
+//		// Fetch clients from database
+//		ResultSet clientsRes = DatabaseRetrieval.executeQuery("SELECT * FROM Clients");
+//		// Initialize result arrays
+//		ArrayList<String> clientsResArray = new ArrayList<String>();
+//		// Add data from resultset to corresponding array
+//		try {
+//			while (clientsRes.next()) {
+//				clientsResArray.add(clientsRes.getString("ClientID"));
+//			}
+//
+//		} catch (SQLException e1) {
+//			e1.printStackTrace();
+//		}
+//
+//		// Transform result arrays into string arrays since the comboBoxModel only
+//		// accepts it
+//		String[] ClientList = new String[clientsResArray.size() + 1];
+//		// Set Model to the resulting string arrays
+//		ClientList = clientsResArray.toArray(ClientList);
+
+		JComboBox<?> ClientIDs = new JComboBox<Object>();
+		ClientIDs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// Fetch receipt from database
+				ResultSet clientRes = DatabaseRetrieval.executeQuery("SELECT * FROM Clients");
+				// Initialize result arrays
+				ArrayList<String> clientsResArray = new ArrayList<String>();
+				// Add data from resultset to corresponding array
+				try {
+					while (clientRes.next()) {
+						clientsResArray.add(clientRes.getString("ClientID"));
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				// Transform result arrays into string arrays since the comboBoxModel only
+				// accepts it
+				String[] ClientList = new String[clientsResArray.size()];
+				for (int i = 0; i < clientsResArray.size(); i++) {
+					ClientList[i] = clientsResArray.get(i);
+				}
+				// Set Model to the resulting string arrays
+				DefaultComboBoxModel model = new DefaultComboBoxModel(ClientList);
+				ClientIDs.setModel(model);
+			}
+		});
 		ClientIDs.setToolTipText("Client ID");
 		ClientIDs.setPreferredSize(new Dimension(100, 22));
 		panel_3.add(ClientIDs);

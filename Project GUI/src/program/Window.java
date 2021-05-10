@@ -251,6 +251,14 @@ public class Window {
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
+				
+				ClothesIDTxt.setText("ClothesID");
+				ReceiptIDTxt.setText("ReceiptID");
+				ClientIDTxt.setText("ClientID");
+				DateTimeTxt.setText("YYYY-MM-DD");
+				MethodOfPayTxt.setText("Method of Payment");
+				WorkerIDTxt.setText("WorkerID");
+				
 			}
 		});
 		panel_5.add(btnPurchase);

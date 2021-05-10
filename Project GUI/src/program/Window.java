@@ -27,8 +27,6 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -38,8 +36,6 @@ import javax.swing.JComboBox;
 import java.awt.Dimension;
 import java.awt.Cursor;
 import javax.swing.border.EtchedBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 
@@ -99,17 +95,11 @@ public class Window {
 		this.displayedTable = displayedTable;
 	}
 
-	public void setTableClick(JTable table) {
-		System.out.println("lol");
+	public void setTableClick() {
 		// table row select listener
-		table.setCellSelectionEnabled(false);
-		table.setRowSelectionAllowed(true);
-		table.setColumnSelectionAllowed(false);
-		ListSelectionModel rowSelectionModel = table.getSelectionModel();
-		rowSelectionModel.addListSelectionListener(new ListSelectionListener() {
+		table.addMouseListener(new MouseAdapter() {
 			@Override
-			// saves all values of the selected row in "selectedData" as string[]
-			public void valueChanged(ListSelectionEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				String selectedData = "";
 				int selectedRow = table.getSelectedRows()[0];
 				for (int col = 0; col < table.getColumnCount(); col++) {
@@ -118,7 +108,6 @@ public class Window {
 				selectedData = selectedData.substring(0, selectedData.length() - 1);
 				highlightedRow = selectedData.split(",");
 			}
-
 		});
 	}
 
@@ -175,28 +164,33 @@ public class Window {
 					JOptionPane.showMessageDialog(null, "Select a row before trying to delete");
 				} else {
 					// Confirm Dialog
-					int dialogButton = JOptionPane.YES_NO_OPTION;
-					JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected row?");
+					int dialogButton = JOptionPane.showConfirmDialog(null,
+							"Are you sure you want to delete the selected row?", "Delete?",
+							JOptionPane.YES_NO_CANCEL_OPTION);
 					if (dialogButton == JOptionPane.YES_OPTION) {
-						String deleteQuery = "DELETE FROM " + (String) getDisplayedTable().tableName + " WHERE ";
+						String deleteQuery = "DELETE FROM clothesshop." + (String) getDisplayedTable().tableName
+								+ " WHERE ";
 						// Add where clauses
 						for (int i = 0; i < highlightedRow.length; i++) {
 							if (highlightedRow[i].equals("null")) {
 								continue;
 							}
-							System.out.println("Delete me: " + highlightedRow[i]);
 							deleteQuery += "`" + (String) displayedTable.columnNames[i] + "`='" + highlightedRow[i]
 									+ "' AND ";
-
-//							System.out.println(deleteQuery);
-
 						}
 						// Remove trailing AND
 						deleteQuery = deleteQuery.substring(0, deleteQuery.length() - 5);
 						System.out.println(deleteQuery);
 						// Execute query
-						DatabaseRetrieval.executeQuery(deleteQuery);
+						try {
+							DatabaseRetrieval.executeUpdate(deleteQuery);
+						} catch (ClassNotFoundException e1) {
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
 					}
+					JOptionPane.showMessageDialog(null, "Row Deleted", "Success", JOptionPane.OK_OPTION);
 				}
 
 			}
@@ -258,18 +252,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-				table.addFocusListener(new FocusAdapter() {
-					@Override
-					public void focusLost(FocusEvent e) {
-						System.out.println("hehe lol");
-					}
-				});
-//				setTableClick(table);
 
 				// Renaming the table header
 				JTableHeader th = table.getTableHeader();
@@ -341,12 +330,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 				setDisplayedTable(c);
 			}
 
@@ -370,12 +360,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 				setDisplayedTable(c);
 			}
 		});
@@ -401,12 +392,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 				setDisplayedTable(c);
 			}
 		});
@@ -533,12 +525,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 				// Renaming the table header
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
@@ -643,12 +636,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 			}
 		});
 		panel_1.add(btnClothesFromSupplier);
@@ -668,12 +662,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 			}
 		});
 		btnClothesBought.setBounds(40, 101, 264, 23);
@@ -731,12 +726,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 			}
 		});
 		panel_2.add(btnBoughtClothesByReceiptID);
@@ -793,12 +789,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-//				setTableClick(table);
 			}
 		});
 		panel_3.add(btnBoughtClothesByClientID);
@@ -828,13 +825,13 @@ public class Window {
 					tableWrapper.add(table.getTableHeader(), BorderLayout.PAGE_START);
 					tableWrapper.add(table, BorderLayout.CENTER);
 					frame.validate();
+					setTableClick();
 				} else {
 					table.clearSelection();
+					highlightedRow = null;
 					DefaultTableModel data = new DefaultTableModel(c.data, c.columnNames);
 					table.setModel(data);
 				}
-
-//				setTableClick(table);
 
 				// Renaming the table header
 				JTableHeader th = table.getTableHeader();
